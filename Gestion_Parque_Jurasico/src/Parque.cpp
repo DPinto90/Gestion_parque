@@ -29,7 +29,7 @@ void Parque::cargarVecPases(){
     int i;
     Pase registro;
 
-    for(i=0; i<4; i++){
+    for(i=0; i<3; i++){
         registro.leerDeDisco(i);
         if(registro.getEstado()){
             _Pases[i]=registro;
