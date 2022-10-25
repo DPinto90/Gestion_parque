@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TP_Gestion" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/TP_Gestion" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/TP_Gestion" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="funciones.cpp" />
+		<Unit filename="funciones.h" />
+		<Unit filename="include/Actividad.h" />
+		<Unit filename="include/ArchivoActividades.h" />
+		<Unit filename="include/ArchivoCliente.h" />
+		<Unit filename="include/ArchivoEmpleados.h" />
+		<Unit filename="include/ArchivoPases.h" />
+		<Unit filename="include/ArchivoVentas.h" />
+		<Unit filename="include/Cliente.h" />
+		<Unit filename="include/Empleado.h" />
+		<Unit filename="include/Fecha.h" />
+		<Unit filename="include/Items.h" />
+		<Unit filename="include/Menu.h" />
+		<Unit filename="include/Parque.h" />
+		<Unit filename="include/Pase.h" />
+		<Unit filename="include/Persona.h" />
+		<Unit filename="include/Venta.h" />
+		<Unit filename="include/rlutil.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="opcion_admin.cpp" />
+		<Unit filename="opcion_admin.h" />
+		<Unit filename="opcion_clientes.cpp" />
+		<Unit filename="opcion_clientes.h" />
+		<Unit filename="rlutil.h" />
+		<Unit filename="src/Actividad.cpp" />
+		<Unit filename="src/ArchivoActividades.cpp" />
+		<Unit filename="src/ArchivoCliente.cpp" />
+		<Unit filename="src/ArchivoEmpleados.cpp" />
+		<Unit filename="src/ArchivoPases.cpp" />
+		<Unit filename="src/ArchivoVentas.cpp" />
+		<Unit filename="src/Cliente.cpp" />
+		<Unit filename="src/Empleado.cpp" />
+		<Unit filename="src/Fecha.cpp" />
+		<Unit filename="src/Items.cpp" />
+		<Unit filename="src/Menu.cpp" />
+		<Unit filename="src/Parque.cpp" />
+		<Unit filename="src/Pase.cpp" />
+		<Unit filename="src/Persona.cpp" />
+		<Unit filename="src/Venta.cpp" />
+		<Unit filename="visuales.cpp" />
+		<Unit filename="visuales.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
