@@ -1,5 +1,5 @@
 # Gestion_parque
-:rocket:  Sistema de gestión desarrollado en Laboratorio de Computación 2, de la Tecnicatura Universitaria en Programación (UTN - FRGP). :rocket:
+:rocket:  Sistema de gestión desarrollado en Laboratorio de Computación 2 de la Tecnicatura Universitaria en Programación (UTN - FRGP). :rocket:
 
 #### Colaboradores: 
 
