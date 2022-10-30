@@ -2,29 +2,26 @@
 #define CLIENTE_H
 
 #include "Persona.h"
-
-
+#include "Fecha.h"
 class Cliente : public Persona{
 private:
-	int _edad;
-	//float _altura;
+	Fecha _fechaNac;
 	bool _estado;
+	int _edad;
 public:
 	Cliente();
 	void cargarCliente();
 	void mostrarCliente(int x);
 	void bajaCliente();
 	void realizarCompra();
-	void setEdad(int);
-	//void setAltura(float);
+	void setFecha(Fecha);
 	void setEstado(bool);
+	Fecha getFecha();
 	int getEdad();
-	//float getAltura();
     bool getEstado();
     bool leerDeDisco(int);
     bool GrabarEnDisco();
     bool ModificarEnDisco(int);
-	//~Cliente();
 };
 
 

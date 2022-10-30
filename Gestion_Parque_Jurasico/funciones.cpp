@@ -128,8 +128,8 @@ bool InicioSesion(Parque &parque, Empleado &empleado){
                 empleado = archivo_emp.getUltimoEmpleado();
                 empleado.HacerAdmin();
                 archivo_emp.setEmpleado(empleado);
-                rlutil::locate(35, 25);
-                std::cout<<"El primer usuario registrado será admin indistintamente de su elección.";
+                rlutil::locate(20, 25);
+                std::cout<<"ATENCIÓN: El primer usuario registrado será admin indistintamente de su elección.";
                 rlutil::anykey();
                 rlutil::cls();
                 rlutil::locate(45, 15);

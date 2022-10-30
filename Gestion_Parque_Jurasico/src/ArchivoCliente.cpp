@@ -5,12 +5,12 @@ bool ArchivoCliente::agregarCliente(int dni){
     nuevo.cargarCliente();
     nuevo.setDni(dni);
     if(nuevo.GrabarEnDisco()){
-        rlutil::locate(40, 15);
+        rlutil::locate(40, 20);
         cout<<"Registro agregado exitosamente."<<endl;
         rlutil::anykey();
         return true;
     }else{
-        rlutil::locate(40, 15);
+        rlutil::locate(40, 20);
         cout<<"No se pudo guardar el registro."<<endl;
         rlutil::anykey();
         return false;

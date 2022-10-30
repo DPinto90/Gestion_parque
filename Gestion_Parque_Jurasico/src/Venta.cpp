@@ -21,12 +21,6 @@ void Venta::setDniCliente(int dni){
 }
 
 
-///
-/*
-void Venta::setCodPase(int cod_pase){
-    _codigoDelPase = cod_pase;
-}
-*/
 
 ///
 void Venta::setLegajoEmpleado(int leg_empleado){
@@ -57,6 +51,11 @@ void Venta::setPase(Pase pase){
 }
 
 ///
+void Venta::setMedioDePago(int medio){
+    _medioDePago = medio;
+}
+
+///
 bool Venta::getEstado(){
     return _estado;
 }
@@ -74,12 +73,7 @@ int Venta::getDniCliente(){
 }
 
 
-///
-/*
-int Venta::getCodPase(){
-    return _codigoDelPase;
-}
-*/
+
 
 ///
 int Venta::getLegajoEmpleado(){
@@ -104,19 +98,28 @@ Pase Venta::getPase(){
 }
 
 ///
+int Venta::getMedioDePago(){
+    return _medioDePago;
+}
+///
 void Venta::mostrarVenta(int x){
+    string medio[3]{"Efectivo", "Tarjeta", "QR"};
+
     setlocale(LC_ALL, "");
-    rlutil::locate(42, 5 + (x * 6));
-    cout << ">> Venta número " << _numeroVenta << " - "; _fecha.Mostrar();
-    cout << endl;
-    rlutil::locate(45, 6 + (x * 6));
-    cout << "- Cliente (DNI): " << _dniCliente << endl;
-    rlutil::locate(45, 7 + (x * 6));
-    cout << "- Código del pase: " << _pase.getCodigo() <<" - "<<_pase.getNombre() << endl;
-    rlutil::locate(45, 8 + (x * 6));
-    cout << "- Monto de la venta: " << _monto << endl;
-    rlutil::locate(45, 9 + (x * 6));
-    cout << "- Vendedor: " << _legajoEmpleado << endl;
+    rlutil::locate(42, 5 + (x * 8));
+    cout << ">> Venta número " << _numeroVenta;
+    rlutil::locate(45, 6 + (x * 8));
+    cout << "- Fecha: "; _fecha.Mostrar();
+    rlutil::locate(45, 7 + (x * 8));
+    cout << "- Cliente (DNI): " << _dniCliente;
+    rlutil::locate(45, 8 + (x * 8));
+    cout << "- Código del pase: " << _pase.getCodigo() <<" - "<<_pase.getNombre();
+    rlutil::locate(45, 9 + (x * 8));
+    cout << "- Monto de la venta: " << _monto;
+    rlutil::locate(45, 10 + (x * 8));
+    cout << "- Medio de pago: " << medio[_medioDePago-1];
+    rlutil::locate(45, 11 + (x * 8));
+    cout << "- Vendedor: " << _legajoEmpleado;
     cout << endl;
 }
 

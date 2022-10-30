@@ -1,23 +1,40 @@
 #include "Cliente.h"
+#include "../funciones.h"
 
 
 ///
 Cliente::Cliente(){
-    _edad = 0;
     _estado = false;
+    _edad = -1;
 }
 
 ///
 void Cliente::cargarCliente(){
     std::setlocale(LC_ALL, "");
+    int dia, mes, anio;
+    Fecha fecha;
+
     rlutil::locate(43, 8);
     cout<<"- Registrar cliente -"<<endl;
     cargarPersona();
-    rlutil::locate(43, 12);
-    cout<<"Edad (numero entero): ";
-    cin>>_edad;
+    rlutil::locate(43, 13);
+    cout<<"Fecha de Nacimiento";
+    rlutil::locate(45, 14);
+    cout<<"DÍA: ";
+    cin>>dia;
+    rlutil::locate(45, 15);
+    cout<<"MES: ";
+    cin>>mes;
+    rlutil::locate(45, 16);
+    cout<<"AÑO: ";
+    cin>>anio;
     cout<<endl<<endl;
     _estado = true;
+
+    fecha.setDia(dia);
+    fecha.setMes(mes);
+    fecha.setAnio(anio);
+    setFecha(fecha);
 }
 
 
@@ -26,7 +43,9 @@ void Cliente::mostrarCliente(int x){
     setlocale(LC_ALL, "");
     mostrarPersona(x);
     rlutil::locate(45, 7 + (x * 5));
-    cout << "- Edad: " << _edad << endl;
+    cout << "- Fecha de nacimiento: ";_fechaNac.Mostrar();
+    rlutil::locate(45, 8 + (x * 5));
+    cout << "- Edad: "<<getEdad();
     cout<<endl<<endl;
 }
 
@@ -38,14 +57,23 @@ void Cliente::bajaCliente(){
 }
 
 ///
-void Cliente::setEdad(int edad){
-    _edad = edad;
+void Cliente::setFecha(Fecha fecha){
+    _fechaNac = fecha;
 }
 
 
 
 ///
 int Cliente::getEdad(){
+    Fecha hoy;
+    if(_fechaNac.getDia()!=0){
+        fecha(hoy);
+        if(_fechaNac.getMes()>hoy.getMes()|| (_fechaNac.getMes()==hoy.getMes()&&_fechaNac.getDia()>hoy.getDia())){
+            _edad = hoy.getAnio() - _fechaNac.getAnio() - 1;
+        }else{
+            _edad = hoy.getAnio()- _fechaNac.getAnio();
+        }
+    }
     return _edad;
 }
 
@@ -55,8 +83,14 @@ void Cliente::setEstado(bool estado){
     _estado = estado;
 }
 
+///
 bool Cliente::getEstado(){
     return _estado;
+}
+
+///
+Fecha Cliente::getFecha(){
+    return _fechaNac;
 }
 
 

@@ -187,11 +187,29 @@ bool Parque::confirmarVenta(Venta venta, Pase pase, Empleado empleado, Cliente c
     rlutil::cls();
 
     if(confirmar){
+        int medio;
+
         _actividad[0].ocuparLugar();
         for(int y=1; y<4; y++){
             _ArchivoAct.setActividad(_actividad[y]);
         }
 
+        do{
+            rlutil::locate(45, 3);
+            std::cout<<"- Elija el medio de pago -";
+            rlutil::locate(48, 5);
+            std::cout<<"[1] Efectivo ";
+            rlutil::locate(48, 6);
+            std::cout<<"[2] Tarjeta ";
+            rlutil::locate(48, 7);
+            std::cout<<"[3] QR ";
+            rlutil::locate(48, 9);
+            std::cout<<"SU ELECCIÓN: ";
+            std::cin>>medio;
+            rlutil::cls();
+        }while(medio<1||medio>3);
+
+        venta.setMedioDePago(medio);
         venta.setNumVenta(ContarVentas()+1);
         venta.setDniCliente(cliente.getDni());
         venta.setLegajoEmpleado(empleado.getLegajo());
@@ -199,9 +217,10 @@ bool Parque::confirmarVenta(Venta venta, Pase pase, Empleado empleado, Cliente c
         venta.setEstado(true);
         venta.setFecha(date);
         venta.setPase(pase);
+
         compraExitosa = venta.GrabarEnDisco();
 
-        rlutil::cls();
+        //rlutil::cls();
         rlutil::locate(45, 3);
         std::cout<<"- DATOS DE LA VENTA -";
         venta.mostrarVenta(0);
@@ -221,25 +240,26 @@ void Parque::MostrarOpcionesPases(){
     rlutil::locate(30, 7);
     std::cout<<"---------------------------------------------------------------------";
     rlutil::locate(30, 9);
-    std::cout<<"- 1 "<<_Pases[0].getNombre();
-    rlutil::locate(60, 9);
-    cout<< "  -  Incluye "<< _Pases[0].getCantActividades()<<" Actividades premium.";
-    rlutil::locate(30, 10);
-    std::cout<<"- 2 "<<_Pases[1].getNombre();
-    rlutil::locate(60, 10);
-    cout<< "  -  Incluye "<<_Pases[1].getCantActividades()<<" Actividades premium.";
+    std::cout<<"ACLARACIÓN: Todos los pases incluyen acceso al área general de juegos.";
     rlutil::locate(30, 11);
-    std::cout<<"- 3 "<<_Pases[2].getNombre();
+    std::cout<<"[1] "<<_Pases[0].getNombre();
     rlutil::locate(60, 11);
+    cout<< "  -  Incluye "<< _Pases[0].getCantActividades()<<" Actividades premium.";
+    rlutil::locate(30, 12);
+    std::cout<<"[2] "<<_Pases[1].getNombre();
+    rlutil::locate(60, 12);
+    cout<< "  -  Incluye "<<_Pases[1].getCantActividades()<<" Actividades premium.";
+    rlutil::locate(30, 13);
+    std::cout<<"[3] "<<_Pases[2].getNombre();
+    rlutil::locate(60, 13);
     cout<< "  -  Incluye "<<_Pases[2].getCantActividades()<<" Actividades premium.";
 
 
-    rlutil::locate(30, 17);
-    std::cout<<"---------------------------------------------------------------------";
-    rlutil::locate(30, 18);
-    std::cout<<"ACLARACIÓN: Todos los pases incluyen acceso al área general de juegos.";
-
     rlutil::locate(30, 14);
+    std::cout<<"---------------------------------------------------------------------";
+
+
+    rlutil::locate(30, 15);
     std::cout<<"Su elección: ";
 
 }
@@ -247,7 +267,7 @@ void Parque::MostrarOpcionesPases(){
 ///
 void Parque::MostrarOpcionesActividades(int i){
     rlutil::locate(30, 6);
-    std::cout<<"Selección actividad número: " << i+1;
+    std::cout<<"Elija su actividad número: " << i+1;
     rlutil::locate(30, 7);
     std::cout<<"-------------------------------------------------------";
     rlutil::locate(30, 9);

@@ -39,29 +39,55 @@ void opcion_1(Parque &parque, Empleado &empleado){
             case 3:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                Ventas_Por_Cliente();
+                Ultima_venta();
             break;
             case 4:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                Ultima_venta();
+                archivo_ven.ListarVentas();
             break;
             case 5:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                archivo_ven.ListarVentas();
+                archivo_cli.ListarClientes();
             break;
             case 6:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                archivo_cli.ListarClientes();
+                Ventas_Por_Cliente();
             break;
             case 7:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
                 Ventas_Por_Empleado();
             break;
-
+            case 8:
+                rlutil::cls();
+                mostrar_datos_log(empleado);
+                if(exportarVentas()){
+                    rlutil::locate(40,12);
+                    cout<<"Archivo csv generado correctamente.";
+                }
+                rlutil::anykey();
+            break;
+            case 9:
+                rlutil::cls();
+                mostrar_datos_log(empleado);
+                if(exportarVentasMes()){
+                    rlutil::locate(40,12);
+                    cout<<"Archivo csv generado correctamente.";
+                }
+                rlutil::anykey();
+            break;
+            case 10:
+                rlutil::cls();
+                mostrar_datos_log(empleado);
+                if(exportarClientes()){
+                    rlutil::locate(40,12);
+                    cout<<"Archivo csv generado correctamente.";
+                }
+                rlutil::anykey();
+            break;
             case 0:
                rlutil::cls();
                 rlutil::locate(45,12);
@@ -88,15 +114,18 @@ void opcion_1(Parque &parque, Empleado &empleado){
 void config_menu_ventas(Menu &menu){
     std::setlocale(LC_ALL, "");
 
-    menu.SetCantItems(8);
+    menu.SetCantItems(11);
     menu.SetNombre("- ÁREA VENTAS -");
     menu.AddItem("COMPRAR PASE", 1);
     menu.AddItem("REINICIAR OCUPACIÓN DE ACTIVIDADES", 2);
-    menu.AddItem("BUSCAR VENTAS DE UN CLIENTE", 3);
-    menu.AddItem("VER ÚLTIMA VENTA", 4);
-    menu.AddItem("LISTADO DE VENTAS", 5);
-    menu.AddItem("LISTADO DE CLIENTES", 6);
-    menu.AddItem("VENTAS POR EMPLEADO", 7);
+    menu.AddItem("VER ÚLTIMA VENTA", 3);
+    menu.AddItem("VER LISTADO DE VENTAS", 4);
+    menu.AddItem("VER LISTADO DE CLIENTES", 5);
+    menu.AddItem("VER VENTAS DE UN CLIENTE", 6);
+    menu.AddItem("VER VENTAS DE UN EMPLEADO", 7);
+    menu.AddItem("EXPORTAR LISTADO DE VENTAS ORDENADO POR VENDEDOR", 8);
+    menu.AddItem("EXPORTAR lISTADO DE VENTAS DEL MES ACTUAL", 9);
+    menu.AddItem("EXPORTAR LISTADO DE CLIENTES", 10);
 }
 
 /// Pantalla transición al menú:
@@ -153,4 +182,121 @@ void Ultima_venta(){
     }
 
     rlutil::anykey();
+}
+
+///
+/*
+EXPORTAR LISTADO DE VENTAS ORDENADO POR VENDEDOR
+*/
+bool exportarVentas(){
+    bool csv_ok, archivoVentas_ok = false;
+    ofstream archivo_csv("VentasPorVendedor.csv");
+
+    if(!archivo_csv){
+        csv_ok = error_csv();
+    }else{
+        archivo_csv<<"Num. venta,Fecha,DNI cliente,Pase,Monto,Medio de pago,Vendedor"<<endl;
+        string medios[3]{"Efectivo", "Tarjeta", "QR"};
+        Venta reg_venta;
+        Empleado reg_empleado;
+        int pos_v, pos_e = 0, legajo;
+        while(reg_empleado.leerDeDisco(pos_e++)){
+            legajo = reg_empleado.getLegajo();
+            pos_v=0;
+            while(reg_venta.leerDeDisco(pos_v++)){
+                archivoVentas_ok = true;
+                if(reg_venta.getLegajoEmpleado()==legajo){
+                    int num = reg_venta.getNumVenta();
+                    int dia = reg_venta.getFecha().getDia();
+                    int mes = reg_venta.getFecha().getMes();
+                    int anio = reg_venta.getFecha().getAnio();
+                    int DNI_cli = reg_venta.getDniCliente();
+                    string pase = reg_venta.getPase().getNombre();
+                    float monto = reg_venta.getMonto();
+                    int medio = reg_venta.getMedioDePago();
+                    archivo_csv<<num<<","<<dia<<"/"<<mes<<"/"<<anio<<","<<DNI_cli<<","<<pase<<","<<monto<<","<<medios[medio-1]<<","<<legajo<<endl;
+                }
+            }
+        }
+        if(archivoVentas_ok){
+            csv_ok = true;
+        }
+    }
+    return csv_ok;
+}
+///
+/*
+EXPORTAR lISTADO DE VENTAS DEL MES ACTUAL
+*/
+bool exportarVentasMes(){
+    bool csv_ok, archivoVentas_ok = false;
+    ofstream archivo_csv("VentasDelMes.csv");
+
+    if(!archivo_csv){
+        csv_ok = error_csv();
+    }else{
+        archivo_csv<<"Num. venta,Fecha,DNI cliente,Pase,Monto,Medio de pago,Vendedor"<<endl;
+        string medios[3]{"Efectivo", "Tarjeta", "QR"};
+        Venta reg_venta;
+        int pos_v = 0;
+        Fecha hoy, date;
+        fecha(hoy);
+        while(reg_venta.leerDeDisco(pos_v++)){
+            archivoVentas_ok = true;
+            date = reg_venta.getFecha();
+            if(date.getAnio()==hoy.getAnio()&&date.getMes()==hoy.getMes()){
+                int num = reg_venta.getNumVenta();
+                int DNI_cli = reg_venta.getDniCliente();
+                string pase = reg_venta.getPase().getNombre();
+                float monto = reg_venta.getMonto();
+                int medio = reg_venta.getMedioDePago();
+                int legajo = reg_venta.getLegajoEmpleado();
+                archivo_csv<<num<<","<<date.getDia()<<"/"<<date.getMes()<<"/"<<date.getAnio()<<","<<DNI_cli<<","<<pase<<","<<monto<<","<<medios[medio-1]<<","<<legajo<<endl;
+            }
+        }
+        if(archivoVentas_ok){
+            csv_ok = true;
+        }
+    }
+    return csv_ok;
+}
+
+///
+/*
+EXPORTAR LISTADO DE CLIENTES
+*/
+bool exportarClientes(){
+    bool csv_ok, archivoVentas_ok = false;
+    ofstream archivo_csv("Clientes.csv");
+
+    if(!archivo_csv){
+        csv_ok = error_csv();
+    }else{
+        archivo_csv<<"Nombre,Apellido,DNI,Fecha de Nacimiento"<<endl;
+        Cliente reg_cliente;
+        int pos = 0;
+        Fecha date;
+        while(reg_cliente.leerDeDisco(pos++)){
+            archivoVentas_ok = true;
+            date = reg_cliente.getFecha();
+            string nombre = reg_cliente.getNombre();
+            string apellido = reg_cliente.getApellido();
+            int DNI_cli = reg_cliente.getDni();
+            archivo_csv<<nombre<<","<<apellido<<","<<DNI_cli<<","<<date.getDia()<<"/"<<date.getMes()<<"/"<<date.getAnio()<<endl;
+        }
+        if(archivoVentas_ok){
+            csv_ok = true;
+        }
+    }
+    return csv_ok;
+}
+
+
+///
+bool error_csv(){
+    rlutil::locate(40,12);
+    cout<<"Error al crear el archivo csv...";
+    rlutil::locate(40,14);
+    cout<<"Es posible que se encuentre en uso."<<endl;
+    return false;
 }

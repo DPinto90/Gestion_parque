@@ -9,7 +9,7 @@ class Venta{
     private:
         int _numeroVenta;
         int _dniCliente;
-        //int _codigoDelPase;
+        int _medioDePago;
         float _monto;
         int _legajoEmpleado;
         bool _estado;
@@ -20,7 +20,7 @@ class Venta{
         Venta();
         void setNumVenta(int);
         void setDniCliente(int);
-        //void setCodPase(int);
+        void setMedioDePago(int);
         void setLegajoEmpleado(int);
         void setEstado(bool);
         void setMonto(float);
@@ -28,8 +28,8 @@ class Venta{
         void setPase(Pase pase);
         int getNumVenta();
         int getDniCliente();
-        //int getCodPase();
         int getLegajoEmpleado();
+        int getMedioDePago();
         float getMonto();
         bool getEstado();
         Fecha getFecha();
