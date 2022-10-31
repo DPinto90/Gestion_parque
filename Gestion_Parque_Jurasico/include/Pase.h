@@ -1,7 +1,7 @@
 #ifndef PASE_H
 #define PASE_H
 
-#include "rlutil.h"
+#include "../rlutil.h"
 
 class Pase{
     private:

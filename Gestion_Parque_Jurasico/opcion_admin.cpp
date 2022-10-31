@@ -298,7 +298,8 @@ void Item10(){
     ArchivoVentas archivo;
     Empleado empleado_ventas, empleado_act;
     string meses[12]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-    int mes1, mes2, monto1, monto2, max_ventas, max_actividades;
+    int mes1, mes2, max_ventas, max_actividades;
+    float monto1, monto2;
 
     monto1 = monto_mes_pasado(mes1);
     monto2 = monto_mes_pasado2(mes2);

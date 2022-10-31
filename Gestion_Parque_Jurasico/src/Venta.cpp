@@ -1,6 +1,6 @@
 #include "Venta.h"
 #include <iostream>
-#include "rlutil.h"
+#include "../rlutil.h"
 
 using namespace std;
 
