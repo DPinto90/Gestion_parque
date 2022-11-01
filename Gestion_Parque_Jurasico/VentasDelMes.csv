@@ -1,0 +1,5 @@
+Num. venta,Fecha,DNI cliente,Pase,Monto,Medio de pago,Vendedor
+13,1/11/2022,32456789,Pase Galaxia,4500,Efectivo,1000
+14,1/11/2022,21222111,Pase Triceratops,3000,QR,1000
+15,1/11/2022,33333333,Pase Galaxia,4500,Efectivo,1001
+16,1/11/2022,21222111,Pase Galaxia,4500,QR,1001

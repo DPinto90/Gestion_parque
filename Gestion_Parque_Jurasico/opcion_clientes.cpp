@@ -6,9 +6,9 @@
 void opcion_1(Parque &parque, Empleado &empleado){
     int opcion_menu;
     Menu menu_ventas;
-    ArchivoCliente archivo_cli;
+    //ArchivoCliente archivo_cli;
     ArchivoActividades archivo_act;
-    ArchivoVentas archivo_ven;
+    //ArchivoVentas archivo_ven;
     Fecha date;
 
     Ingresando_a_ventas();
@@ -44,24 +44,19 @@ void opcion_1(Parque &parque, Empleado &empleado){
             case 4:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                archivo_ven.ListarVentas();
+                Ventas_del_dia();
             break;
             case 5:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                archivo_cli.ListarClientes();
+                Ventas_Por_Cliente();
             break;
             case 6:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
-                Ventas_Por_Cliente();
-            break;
-            case 7:
-                rlutil::cls();
-                mostrar_datos_log(empleado);
                 Ventas_Por_Empleado();
             break;
-            case 8:
+            case 7:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
                 if(exportarVentas()){
@@ -70,7 +65,7 @@ void opcion_1(Parque &parque, Empleado &empleado){
                 }
                 rlutil::anykey();
             break;
-            case 9:
+            case 8:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
                 if(exportarVentasMes()){
@@ -79,7 +74,7 @@ void opcion_1(Parque &parque, Empleado &empleado){
                 }
                 rlutil::anykey();
             break;
-            case 10:
+            case 9:
                 rlutil::cls();
                 mostrar_datos_log(empleado);
                 if(exportarClientes()){
@@ -114,18 +109,17 @@ void opcion_1(Parque &parque, Empleado &empleado){
 void config_menu_ventas(Menu &menu){
     std::setlocale(LC_ALL, "");
 
-    menu.SetCantItems(11);
+    menu.SetCantItems(10);
     menu.SetNombre("- ÁREA VENTAS -");
     menu.AddItem("COMPRAR PASE", 1);
     menu.AddItem("REINICIAR OCUPACIÓN DE ACTIVIDADES", 2);
     menu.AddItem("VER ÚLTIMA VENTA", 3);
-    menu.AddItem("VER LISTADO DE VENTAS", 4);
-    menu.AddItem("VER LISTADO DE CLIENTES", 5);
-    menu.AddItem("VER VENTAS DE UN CLIENTE", 6);
-    menu.AddItem("VER VENTAS DE UN EMPLEADO", 7);
-    menu.AddItem("EXPORTAR LISTADO DE VENTAS ORDENADO POR VENDEDOR", 8);
-    menu.AddItem("EXPORTAR lISTADO DE VENTAS DEL MES ACTUAL", 9);
-    menu.AddItem("EXPORTAR LISTADO DE CLIENTES", 10);
+    menu.AddItem("VER VENTAS DEL DÍA", 4);
+    menu.AddItem("VER VENTAS DE UN CLIENTE", 5);
+    menu.AddItem("VER VENTAS DE UN EMPLEADO", 6);
+    menu.AddItem("EXPORTAR LISTADO DE VENTAS ORDENADO POR VENDEDOR", 7);
+    menu.AddItem("EXPORTAR lISTADO DE VENTAS DEL MES ACTUAL", 8);
+    menu.AddItem("EXPORTAR LISTADO DE CLIENTES", 9);
 }
 
 /// Pantalla transición al menú:
@@ -299,4 +293,38 @@ bool error_csv(){
     rlutil::locate(40,14);
     cout<<"Es posible que se encuentre en uso."<<endl;
     return false;
+}
+
+
+///
+void Ventas_del_dia(){
+    Venta reg_venta;
+    int pos=0, x=0;
+    Fecha date, hoy;
+    bool archivoOk=0;
+
+    fecha(hoy);
+    int dia = hoy.getDia();
+    int mes = hoy.getMes();
+    int anio = hoy.getAnio();
+
+    rlutil::locate(45, 3);
+    std::cout<<"- VENTAS DEL DÍA -";
+    while(reg_venta.leerDeDisco(pos++)){
+        date=reg_venta.getFecha();
+        if(date.getAnio()==anio&&date.getMes()==mes&&date.getDia()==dia){
+            reg_venta.mostrarVenta(x);
+            x++;
+        }
+        archivoOk=true;
+    }
+
+    if(archivoOk==false){
+        rlutil::locate(40, 8);
+        std::cout<<"No se encontró el archivo...";
+    }else if(x==0){
+        rlutil::locate(40, 8);
+        std::cout<<"No se encontraron registros del día...";
+    }
+    rlutil::anykey();
 }
