@@ -5,5 +5,4 @@
 
 :space_invader: Pinto, Daniela Florencia <br/>
 :space_invader: Labat, Marcos Luciano <br/>
-:space_invader: Tam, Juan Facundo <br/>
 :space_invader: Torres, Paula Andrea <br/>
