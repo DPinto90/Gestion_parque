@@ -21,6 +21,7 @@
     float monto_mes_pasado2(int &mes);
     Empleado mejor_vendedor(int &cant);
     Empleado mejor_vendedor_act(int &cant);
+    int medio_preferido(int &cant_elecciones);
 
 
 

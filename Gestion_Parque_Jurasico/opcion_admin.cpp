@@ -298,13 +298,15 @@ void Item10(){
     ArchivoVentas archivo;
     Empleado empleado_ventas, empleado_act;
     string meses[12]{"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-    int mes1, mes2, max_ventas, max_actividades;
+    string medio[3]{"Efectivo", "Tarjeta", "QR"};
+    int mes1, mes2, max_ventas, max_actividades, medio_pago, cant_elecciones;
     float monto1, monto2;
 
     monto1 = monto_mes_pasado(mes1);
     monto2 = monto_mes_pasado2(mes2);
     empleado_ventas = mejor_vendedor(max_ventas);
     empleado_act = mejor_vendedor_act(max_actividades);
+    medio_pago = medio_preferido(cant_elecciones);
 
     rlutil::locate(50, 5);
     cout<<"- ESTADÍSTICAS -"<<endl;
@@ -331,7 +333,11 @@ void Item10(){
         rlutil::locate(17, 11);
         cout<<">> Empleado que vendió más actividades: ";
         rlutil::locate(60, 11);
-        cout<<empleado_act.getApellido()<<" "<<empleado_act.getNombre()<<" - Legajo "<<empleado_act.getLegajo()<<" ("<<max_actividades<<" act.)"<<endl;
+        cout<<empleado_act.getApellido()<<" "<<empleado_act.getNombre()<<" - Legajo "<<empleado_act.getLegajo()<<" ("<<max_actividades<<" actividades)"<<endl;
+        rlutil::locate(17, 12);
+        cout<<">> Medio de pago más utilizado: ";
+        rlutil::locate(60, 12);
+        cout<<medio[medio_pago-1]<<" ("<<cant_elecciones<<" veces elegido)"<<endl;
     }else{
         rlutil::locate(25, 8);
         cout<<"AÚN NO HAY VENTAS REGISTRADAS"<<endl;
@@ -542,6 +548,29 @@ Empleado mejor_vendedor_act(int &cant){
     return empleado;
 }
 
+///
+int medio_preferido(int &cant_elecciones){
+
+    Venta reg_venta;
+    int medio[3]{}, x, pos = 0, max_cant, max_medio;
+
+    while(reg_venta.leerDeDisco(pos++)){
+        medio[reg_venta.getMedioDePago()-1]++;
+    }
+
+    max_medio = 1;
+    max_cant = medio[0];
+    for(x=1; x<3; x++){
+        if(medio[x]>max_cant){
+            max_medio = x+1;
+            max_cant = medio[x];
+        }
+    }
+
+    cant_elecciones = max_cant;
+
+    return max_medio;
+}
 
 
 
