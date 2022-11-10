@@ -8,12 +8,12 @@
     void opcion_2(Empleado &empleado);
     void config_menu_admin(Menu &menu, Empleado &empleado_log);
     void Ingresando_admin();
-    void Item1(Empleado empleado_log);
-    void Item2(Empleado empleado_log);
-    void Item4(Empleado empleado_log);
-    void Item5(Empleado empleado_log);
-    void Item7(Empleado empleado_log);
-    void Item9(Empleado empleado_log);
+    void Item1();
+    void Item2();
+    void Item4();
+    void Item5();
+    void Item7();
+    void Item9();
     void Item10();
     Pase pase_mas_vendido();
     float monto_mes_actual();

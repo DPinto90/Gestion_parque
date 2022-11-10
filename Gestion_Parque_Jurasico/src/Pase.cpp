@@ -14,14 +14,19 @@ Pase::Pase(){
 ///
 void Pase::cargarPase(){
     std::setlocale(LC_ALL, "");
+    rlutil::locate(43, 8);
     cout<<"- Ingresar Pase -"<<endl;
+    rlutil::locate(43, 13);
     cout<<"Nombre: ";
     cin.ignore();
     cin.getline(_nombre,29);
+    rlutil::locate(43, 14);
     cout<<"Cantidad de actividades: ";
     cin>>_cantActividades;
+    rlutil::locate(43, 15);
     cout<<"Precio: ";
     cin>>_precio;
+    rlutil::locate(43, 16);
     cout<<"Código: ";
     cin>>_codigo;
     cout<<endl<<endl;

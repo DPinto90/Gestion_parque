@@ -189,7 +189,7 @@ bool exportarVentas(){
     if(!archivo_csv){
         csv_ok = error_csv();
     }else{
-        archivo_csv<<"Num. venta,Fecha,DNI cliente,Pase,Monto,Medio de pago,Vendedor"<<endl;
+        archivo_csv<<"Num. venta;Fecha;DNI cliente;Pase;Monto;Medio de pago;Vendedor"<<endl;
         string medios[3]{"Efectivo", "Tarjeta", "QR"};
         Venta reg_venta;
         Empleado reg_empleado;
@@ -208,7 +208,7 @@ bool exportarVentas(){
                     string pase = reg_venta.getPase().getNombre();
                     float monto = reg_venta.getMonto();
                     int medio = reg_venta.getMedioDePago();
-                    archivo_csv<<num<<","<<dia<<"/"<<mes<<"/"<<anio<<","<<DNI_cli<<","<<pase<<","<<monto<<","<<medios[medio-1]<<","<<legajo<<endl;
+                    archivo_csv<<num<<";"<<dia<<"/"<<mes<<"/"<<anio<<";"<<DNI_cli<<";"<<pase<<";"<<monto<<";"<<medios[medio-1]<<";"<<legajo<<endl;
                 }
             }
         }
@@ -229,7 +229,7 @@ bool exportarVentasMes(){
     if(!archivo_csv){
         csv_ok = error_csv();
     }else{
-        archivo_csv<<"Num. venta,Fecha,DNI cliente,Pase,Monto,Medio de pago,Vendedor"<<endl;
+        archivo_csv<<"Num. venta;Fecha;DNI cliente;Pase;Monto;Medio de pago;Vendedor"<<endl;
         string medios[3]{"Efectivo", "Tarjeta", "QR"};
         Venta reg_venta;
         int pos_v = 0;
@@ -245,7 +245,7 @@ bool exportarVentasMes(){
                 float monto = reg_venta.getMonto();
                 int medio = reg_venta.getMedioDePago();
                 int legajo = reg_venta.getLegajoEmpleado();
-                archivo_csv<<num<<","<<date.getDia()<<"/"<<date.getMes()<<"/"<<date.getAnio()<<","<<DNI_cli<<","<<pase<<","<<monto<<","<<medios[medio-1]<<","<<legajo<<endl;
+                archivo_csv<<num<<";"<<date.getDia()<<"/"<<date.getMes()<<"/"<<date.getAnio()<<";"<<DNI_cli<<";"<<pase<<";"<<monto<<";"<<medios[medio-1]<<";"<<legajo<<endl;
             }
         }
         if(archivoVentas_ok){
@@ -266,7 +266,7 @@ bool exportarClientes(){
     if(!archivo_csv){
         csv_ok = error_csv();
     }else{
-        archivo_csv<<"Nombre,Apellido,DNI,Fecha de Nacimiento"<<endl;
+        archivo_csv<<"Nombre;Apellido;DNI;Fecha de Nacimiento"<<endl;
         Cliente reg_cliente;
         int pos = 0;
         Fecha date;
@@ -276,7 +276,7 @@ bool exportarClientes(){
             string nombre = reg_cliente.getNombre();
             string apellido = reg_cliente.getApellido();
             int DNI_cli = reg_cliente.getDni();
-            archivo_csv<<nombre<<","<<apellido<<","<<DNI_cli<<","<<date.getDia()<<"/"<<date.getMes()<<"/"<<date.getAnio()<<endl;
+            archivo_csv<<nombre<<";"<<apellido<<";"<<DNI_cli<<";"<<date.getDia()<<"/"<<date.getMes()<<"/"<<date.getAnio()<<endl;
         }
         if(archivoVentas_ok){
             csv_ok = true;

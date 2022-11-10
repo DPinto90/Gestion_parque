@@ -1,8 +1,9 @@
-Nombre,Apellido,DNI,Fecha de Nacimiento
-Roberto,Planta,12111222,20/8/1948
-Homero,Thompson,22322333,21/12/2000
-Jacinta,Perez,23222333,23/3/1993
-Rei,Ayanami,44444444,6/11/2005
-Ricardo,Blackmore,32456789,10/3/1976
-Maria,Rodriguez,21222111,30/9/1965
-Galadriel,Noldor,33333333,21/2/1920
+Nombre;Apellido;DNI;Fecha de Nacimiento
+Roberto;Planta;12111222;20/8/1948
+Homero;Thompson;22322333;21/12/2000
+Jacinta;Perez;23222333;23/3/1993
+Rei;Ayanami;44444444;6/11/2005
+Ricardo;Blackmore;32456789;10/3/1976
+Maria;Rodriguez;21222111;30/9/1965
+Galadriel;Noldor;33333333;21/2/1920
+Pedro;Perez;32456764;12/3/2001

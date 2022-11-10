@@ -23,12 +23,16 @@ Actividad::Actividad(string nombre, int codigo, int capacidad) {
 ///
 void Actividad::CargarActividad(){
     std::setlocale(LC_ALL, "");
+    rlutil::locate(43, 8);
     cout<<"- Registrar actividad -"<<endl;
+    rlutil::locate(45, 13);
     cout<<"Nombre: ";
     cin.ignore();
     cin.getline(_nombre,29);
+    rlutil::locate(45, 14);
     cout<<"Código (4 dígitos numéricos): ";
     cin>>_codigo;
+    rlutil::locate(45, 15);
     cout<<"Capacidad: ";
     cin>>_capacidad;
     cout<<endl<<endl;

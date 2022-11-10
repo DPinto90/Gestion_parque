@@ -11,7 +11,6 @@
     void Ventas_Por_Cliente();
     void Ventas_Por_Empleado();
     void Ultima_venta();
-    //void Ventas_del_mes();
     void Ventas_del_dia();
     bool exportarVentas();
     bool exportarVentasMes();

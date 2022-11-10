@@ -26,12 +26,12 @@ void opcion_2(Empleado &empleado_log){
             case 1:
                 rlutil::cls();
                 mostrar_datos_log(empleado_log);
-                Item1(empleado_log);
+                Item1();
                 break;
             case 2:
                 rlutil::cls();
                 mostrar_datos_log(empleado_log);
-                Item2(empleado_log);
+                Item2();
                 break;
             case 3:
                 rlutil::cls();
@@ -41,12 +41,12 @@ void opcion_2(Empleado &empleado_log){
             case 4:
                 rlutil::cls();
                 mostrar_datos_log(empleado_log);
-                Item4(empleado_log);
+                Item4();
                 break;
             case 5:
                 rlutil::cls();
                 mostrar_datos_log(empleado_log);
-                Item5(empleado_log);
+                Item5();
                 break;
             case 6:
                 rlutil::cls();
@@ -56,7 +56,7 @@ void opcion_2(Empleado &empleado_log){
             case 7:
                 rlutil::cls();
                 mostrar_datos_log(empleado_log);
-                Item7(empleado_log);
+                Item7();
                 break;
             case 8:
                 rlutil::cls();
@@ -66,7 +66,7 @@ void opcion_2(Empleado &empleado_log){
             case 9:
                 rlutil::cls();
                 mostrar_datos_log(empleado_log);
-                Item9(empleado_log);
+                Item9();
                 break;
             case 10:
                 rlutil::cls();
@@ -124,7 +124,6 @@ void opcion_2(Empleado &empleado_log){
                 std::cout << "ELIJA UNA OPCIÓN VÁLIDA.";
                 rlutil::anykey();
                 break;
-
             }
         }
         rlutil::cls();
@@ -174,7 +173,7 @@ void Ingresando_admin(){
 }
 
 ///
-void Item1(Empleado empleado_log){
+void Item1(){
     ArchivoEmpleados archivo_emp;
     int legajo, dni;
     Empleado empleado_set;
@@ -219,14 +218,14 @@ void Item1(Empleado empleado_log){
 }
 
 ///
-void Item2(Empleado empleado_log){
+void Item2(){
     ArchivoEmpleados archivo_emp;
     archivo_emp.agregarEmpleado();
     rlutil::anykey();
 }
 
 ///
-void Item4(Empleado empleado_log){
+void Item4(){
     ArchivoPases archivo_pase;
     int cant = archivo_pase.getCantidad();
 
@@ -240,15 +239,14 @@ void Item4(Empleado empleado_log){
 }
 
 
-
 ///
-void Item5(Empleado empleado_log){
+void Item5(){
 
     ArchivoPases archivo_pas;
     Pase pase_set;
     rlutil::locate(35, 3);
     cout<<"Ingrese los datos del pase que desea actualzar."<<endl;
-    rlutil::locate(28, 5);
+    rlutil::locate(18, 5);
     cout<<"ATENCIÓN: El código del mismo debe corresponderse con el de un pase ya registrado."<<endl<<endl;
     pase_set.cargarPase();
     if(archivo_pas.setPase(pase_set)){
@@ -261,13 +259,13 @@ void Item5(Empleado empleado_log){
     rlutil::anykey();
 }
 
-void Item9(Empleado empleado_log){
+void Item9(){
     ArchivoActividades archivo_act;
     Actividad actividad_set;
 
     rlutil::locate(35, 3);
     cout<<"Ingrese los datos dela actividad que desea actualzar."<<endl;
-    rlutil::locate(28, 5);
+    rlutil::locate(18, 5);
     cout<<"ATENCIÓN: El código de la misma debe corresponderse con el de una actividad ya registrada."<<endl<<endl;
     actividad_set.CargarActividad();
     if(archivo_act.setActividad(actividad_set)){
@@ -281,7 +279,7 @@ void Item9(Empleado empleado_log){
 }
 
 ///
-void Item7(Empleado empleado_log){
+void Item7(){
     ArchivoActividades archivo_act;
     int cant = archivo_act.getCantidad();
 
@@ -566,7 +564,6 @@ int medio_preferido(int &cant_elecciones){
             max_cant = medio[x];
         }
     }
-
     cant_elecciones = max_cant;
 
     return max_medio;

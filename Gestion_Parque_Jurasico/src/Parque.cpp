@@ -142,6 +142,8 @@ void Parque::ElegirActividad(int cant_actividades){
         for(int x=1; x<4; x++){//la actividad 0 es el parque de juegos general y no se elige. Viene siempre incluida.
             if (_actividad[x].getDisponibilidad()>=1){
                 disponible[x] = true;
+            }else{
+                disponible[x] = false;
             }
         }
         MostrarOpcionesActividades(i);
@@ -220,7 +222,6 @@ bool Parque::confirmarVenta(Venta venta, Pase pase, Empleado empleado, Cliente c
 
         compraExitosa = venta.GrabarEnDisco();
 
-        //rlutil::cls();
         rlutil::locate(45, 3);
         std::cout<<"- DATOS DE LA VENTA -";
         venta.mostrarVenta(0);
@@ -254,10 +255,8 @@ void Parque::MostrarOpcionesPases(){
     rlutil::locate(60, 13);
     cout<< "  -  Incluye "<<_Pases[2].getCantActividades()<<" Actividades premium.";
 
-
     rlutil::locate(30, 14);
     std::cout<<"---------------------------------------------------------------------";
-
 
     rlutil::locate(30, 15);
     std::cout<<"Su elección: ";

@@ -18,11 +18,9 @@ int main(){
     Menu menu_inicio;
     Parque parque_jurasico;
     Empleado empleado_log;
-    //Fecha date;
 
 
     std::setlocale(LC_ALL, "");
-    //fecha(date);
     parque_jurasico.Abrir();
     pantalla_presentacion();
     rlutil::cls();

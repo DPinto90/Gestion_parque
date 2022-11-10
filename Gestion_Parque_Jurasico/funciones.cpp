@@ -25,7 +25,6 @@ void fecha(Fecha &date) {
     // rellenado con los valores correspondientes
     struct tm *local = localtime(&now);
 
-
     day = local->tm_mday;            // obtener el día del mes (1 a 31)
     month = local->tm_mon + 1;      // obtener el mes del año (0 a 11)
     year = local->tm_year + 1900;   // obtener el año desde 1900
