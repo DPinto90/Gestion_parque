@@ -16,9 +16,6 @@ class Actividad{
         int  _capacidad;
         int _disponibilidad;
         int _ocupacion;
-        //float _precio;
-        //float _alturaMin;
-        //int _edadMin;
         bool _estado;
     public:
         Actividad();

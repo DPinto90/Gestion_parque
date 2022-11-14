@@ -107,9 +107,9 @@ bool InicioSesion(Parque &parque, Empleado &empleado){
     Empleado registro;
     ArchivoEmpleados archivo_emp;
     bool encontro = 0, cargo = 0, registrar = 0;
-    int legajo, pos=0;
+    int legajo;
 
-    while(registro.leerDeDisco(pos++)){
+    if(archivo_emp.getCantidad()>0){
         encontro = true;
     }
     if(encontro == false){

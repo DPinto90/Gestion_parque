@@ -358,7 +358,10 @@ Pase pase_mas_vendido(){
     cant_reg_pases = archivo_p.getCantidad();
 
     int *cont_pases = new int [cant_reg_pases]{};
-
+    if(cont_pases==nullptr){
+        cout<<"Error al generar el vector dinámico de pases."<<endl;
+        return pase;//Devuelve pase con valores por omisión.
+    }else
     while(reg_venta.leerDeDisco(pos++)){
         cod = reg_venta.getPase().getCodigo();
         cont_pases[cod-1]++;
@@ -374,15 +377,14 @@ Pase pase_mas_vendido(){
     }
 
     delete[] cont_pases;
-
     pos=0;
     while(pase.leerDeDisco(pos++)){
         if (pase.getCodigo()== mas_vendido){
             return pase;
         }
     }
-    pase.setCodigo(0);
-    return pase;
+
+    return pase;//Devuelve pase con valores por omisión.
 }
 
 ///
@@ -475,7 +477,10 @@ Empleado mejor_vendedor(int &cant){
     cant_empleados = archivo_e.getCantidad();
 
     int *cont_ventas = new int [cant_empleados]{};
-
+    if(cont_ventas==nullptr){
+        cout<<"Error al generar el vector dinámico de empleados."<<endl;
+        return empleado;//devuelve un empleado con los valores por omisión
+    }
     while(empleado.leerDeDisco(pos++)){
         legajo = empleado.getLegajo();
         int pos2=0;
@@ -495,14 +500,12 @@ Empleado mejor_vendedor(int &cant){
         }
     }
     delete[] cont_ventas;
-
     cant = max_ventas;
 
     if(empleado.leerDeDisco(pos_max_ventas)){
         return empleado;
     }
-    empleado.setLegajo(0);
-    return empleado;
+    return empleado;//devuelve un empleado con los valores por omisión.
 }
 ///
 /*
@@ -517,7 +520,10 @@ Empleado mejor_vendedor_act(int &cant){
     cant_empleados = archivo_e.getCantidad();
 
     int *cont_act = new int [cant_empleados]{};
-
+    if(cont_act==nullptr){
+        cout<<"Error al generar el vector dinámico de empleados."<<endl;
+        return empleado;//Devuelve empleado con valores por omisión.
+    }
     while(empleado.leerDeDisco(pos++)){
         legajo = empleado.getLegajo();
         int pos2=0;
@@ -542,8 +548,8 @@ Empleado mejor_vendedor_act(int &cant){
     if(empleado.leerDeDisco(pos_max_act)){
         return empleado;
     }
-    empleado.setLegajo(0);
-    return empleado;
+
+    return empleado;//Devuelve empleado con valores por omisión.
 }
 
 ///
