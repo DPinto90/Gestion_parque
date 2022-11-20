@@ -24,19 +24,19 @@ int Menu::MostrarMenu(){
 
     rlutil::locate(45, 10);
     std::cout<<_nombre;
-    rlutil::locate(40, 11);
-    std::cout<<"--------------------------------";
+    rlutil::locate(30, 11);
+    std::cout<<"-------------------------------------------------------";
 
     for(x=1; x<_cantidadItems; x++){
         if(_opciones[x].GetPosicion() == x){
-            rlutil::locate(42, 11+(x));
+            rlutil::locate(35, 11+(x));
             std::cout<<_opciones[x].GetPosicion()<<" - "<<_opciones[x].GetNombre();
         }
     }
-    rlutil::locate(42, 11+_cantidadItems+1);
+    rlutil::locate(35, 11+_cantidadItems+1);
     std::cout<<_opciones[0].GetPosicion()<<" - "<<_opciones[0].GetNombre();
-    rlutil::locate(40, 11+_cantidadItems+2);
-    std::cout<<"--------------------------------";
+    rlutil::locate(30, 11+_cantidadItems+2);
+    std::cout<<"-------------------------------------------------------";
      rlutil::locate(42, 11+_cantidadItems+3);
     std::cout<<"Su elección: ";
     std::cin>>eleccion;
