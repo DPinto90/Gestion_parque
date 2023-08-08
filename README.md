@@ -1,4 +1,4 @@
-# Gestion_parque
+# Sisema de Gestión Parque Jurásico
 :rocket:  Sistema de gestión desarrollado en Laboratorio de Computación 2 de la Tecnicatura Universitaria en Programación (UTN - FRGP). :rocket:
 
 #### Colaboradores: 
